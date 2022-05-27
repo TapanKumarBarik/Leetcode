@@ -20,15 +20,15 @@ public class Solution {
             fast=fast.next.next;
             slow=slow.next;
             if(fast==slow){
-               break;
+               slow = head;
+                while(slow != fast) {
+                    slow = slow.next;
+                    fast = fast.next;
+                }
+                return slow;
             }
         }
-        if(slow!=fast)return null;
-        slow=head;
-        while(slow!=fast){
-            slow=slow.next;
-            fast=fast.next;
-        }
-        return slow;
+        
+        return null;
     }
 }
