@@ -11,19 +11,14 @@
 class Solution {
     public boolean isPalindrome(ListNode head) {
         
-        
         ListNode fast=head;
         ListNode slow=head;
-        
         while(fast!=null && fast.next!=null){
             fast=fast.next.next;
             slow=slow.next;
         }
-        
         slow = reverse(slow);
-        
         fast=head;
-        
         while(slow!=null){
             if(fast.val!=slow.val){
                 return false;
@@ -37,13 +32,9 @@ class Solution {
     }
     
     private ListNode reverse(ListNode head){
-        
     ListNode prev=null;
-        
         while(head!=null){
-            
             ListNode curr=new ListNode(head.val);
-            
             curr.next=prev;
             prev=curr;
             head=head.next;
