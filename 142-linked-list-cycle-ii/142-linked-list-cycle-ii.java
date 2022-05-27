@@ -17,24 +17,18 @@ public class Solution {
         ListNode slow=head;
         
         while(  slow!=null && fast!=null && fast.next!=null){
-            
-            
             fast=fast.next.next;
             slow=slow.next;
-            
             if(fast==slow){
                break;
             }
         }
-        
         if(slow!=fast)return null;
         slow=head;
-		//now both slow and fast will do a single jump until slow==fast then break
         while(slow!=fast){
             slow=slow.next;
             fast=fast.next;
         }
-		//now you can return slow or fast as booth are same
         return slow;
     }
 }
