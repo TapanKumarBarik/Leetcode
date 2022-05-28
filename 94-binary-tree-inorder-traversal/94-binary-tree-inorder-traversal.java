@@ -14,9 +14,39 @@
  * }
  */
 class Solution {
-    public List<Integer> inorderTraversal(TreeNode root) {
-        
+    public List<Integer> inorderTraversal(TreeNode node) {
+ 
         List<Integer>list=new ArrayList();
+        
+        Stack<TreeNode>st=new Stack();
+        
+        if(node==null)return list;
+        
+       // TreeNode node =root;
+        
+        
+        
+        while(true){
+            
+            if(node!=null){
+                
+                st.push(node);
+                node=node.left;
+            }
+            else{
+                if(st.isEmpty())break;
+                    
+                 node=st.pop();
+                
+                list.add(node.val);
+               node=node.right;
+            }
+        }
+     return list;   
+    }
+        
+        
+       /* List<Integer>list=new ArrayList();
         
         solve(list,root);
         
@@ -33,5 +63,5 @@ class Solution {
         list.add(root.val);
          solve(list,root.right);
         
-    }
+    }*/
 }
