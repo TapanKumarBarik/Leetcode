@@ -1,1 +1,1 @@
-​
+Math.max(0, solve(root.left))
