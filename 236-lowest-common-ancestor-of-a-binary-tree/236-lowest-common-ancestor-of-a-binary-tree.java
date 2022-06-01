@@ -10,40 +10,50 @@
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         
+     if(root==null || p==root || q==root) return root;
         
-        ArrayList<TreeNode>arr1=new ArrayList();
-        ArrayList<TreeNode>arr2=new ArrayList();
+        TreeNode left=lowestCommonAncestor(root.left, p,q);
+        TreeNode right= lowestCommonAncestor(root.right,p,q);
         
-        solve(root, p, arr1);
-        solve(root, q, arr2);
+        return left==null?right :right==null?left : root;
         
-        TreeNode res=null;
-        
-        for(int i=0;i<Math.min(arr1.size(),arr2.size());i++){
-            
-            
-            if(arr1.get(i).val==arr2.get(i).val){
-                res=arr1.get(i);
-            }
-        }
-        
-        return res;
         
     }
+        
+        
+//         ArrayList<TreeNode>arr1=new ArrayList();
+//         ArrayList<TreeNode>arr2=new ArrayList();
+        
+//         solve(root, p, arr1);
+//         solve(root, q, arr2);
+        
+//         TreeNode res=null;
+        
+//         for(int i=0;i<Math.min(arr1.size(),arr2.size());i++){
+            
+            
+//             if(arr1.get(i).val==arr2.get(i).val){
+//                 res=arr1.get(i);
+//             }
+//         }
+        
+//         return res;
+        
+//     }
     
-    private boolean solve(TreeNode root, TreeNode b, ArrayList<TreeNode>arr){
+//     private boolean solve(TreeNode root, TreeNode b, ArrayList<TreeNode>arr){
         
-        if(root==null)return false;
+//         if(root==null)return false;
         
-        arr.add(root);
+//         arr.add(root);
         
-        if(root.val==b.val)return true;
+//         if(root.val==b.val)return true;
         
-        if(solve(root.left, b, arr)  || solve(root.right,b,arr)){
-            return true;
-        }
+//         if(solve(root.left, b, arr)  || solve(root.right,b,arr)){
+//             return true;
+//         }
         
-        arr.remove(arr.size()-1);
-        return false;
-    }
+//         arr.remove(arr.size()-1);
+//         return false;
+//     }
 }
