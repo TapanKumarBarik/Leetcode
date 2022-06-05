@@ -1,57 +1,38 @@
-public class Solution {
+class Solution {
+   
+   private Set<Integer> col = new HashSet<Integer>();
+    private Set<Integer> diag1 = new HashSet<Integer>();
+    private Set<Integer> diag2 = new HashSet<Integer>();
+    
     public List<List<String>> solveNQueens(int n) {
-        
-        char[][] board = new char[n][n];
-        for(int i = 0; i < n; i++)
-        {
-             for(int j = 0; j < n; j++)
-             {
-                   board[i][j] = '.';
-             }
-        }
-        List<List<String>> res = new ArrayList();
-        dfs(board, 0, res);
+        List<List<String>> res = new ArrayList<List<String>>();
+        dfs(res,new ArrayList<String>(), 0, n);
         return res;
     }
-    
-    private void dfs(char[][] board, int colIndex, List<List<String>> res) {
-        if(colIndex == board.length) {
-            res.add(construct(board));
+    private void dfs(List<List<String>> res, List<String> list, int row, int n){
+        if (row == n){
+            res.add(new ArrayList<String>(list));
             return;
         }
-        
-        for(int i = 0; i < board.length; i++) {
-            if(validate(board, i, colIndex)) {
-                board[i][colIndex] = 'Q';
-                dfs(board, colIndex + 1, res);
-                board[i][colIndex] = '.';
-            }
+        for (int i = 0; i < n; i++){
+            if (col.contains(i) || diag1.contains(row + i) || diag2.contains(row - i)) continue;
+            
+            char[] charArray = new char[n];
+            Arrays.fill(charArray, '.');
+            charArray[i] = 'Q';
+            String rowString = new String(charArray);
+            
+            list.add(rowString);
+            col.add(i);
+            diag1.add(row + i);
+            diag2.add(row - i);
+            
+            dfs(res, list, row + 1, n);
+            
+            list.remove(list.size() - 1);
+            col.remove(i);
+            diag1.remove(row + i);
+            diag2.remove(row - i);
         }
-    }
-    
-    private boolean validate(char[][] board, int x, int y) {
-        for(int i = 0; i < board.length; i++) 
-        {
-            for(int j = 0; j < y; j++) 
-            {
-                if(board[i][j] == 'Q' && (x + j == y + i || x + y == i + j || x == i))
-                {
-                      return false;
-                }
-                  
-            }
-        }
-        
-        return true;
-    }
-    
-    private List<String> construct(char[][] board) {
-        List<String> res = new LinkedList<String>();
-        for(int i = 0; i < board.length; i++)
-        {
-            String s = new String(board[i]);
-            res.add(s);
-        }
-        return res;
     }
 }
