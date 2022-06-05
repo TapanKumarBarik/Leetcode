@@ -15,9 +15,12 @@ class Solution {
             return;
         }
         for (int i = 0; i < n; i++){
-            if (col.contains(i) || diag1.contains(row + i) || diag2.contains(row - i)) continue;
+            if (col.contains(i) || diag1.contains(row + i) || diag2.contains(row - i)) {
+                continue;
+            }
             
-            char[] charArray = new char[n];
+        else{
+                char[] charArray = new char[n];
             Arrays.fill(charArray, '.');
             charArray[i] = 'Q';
             String rowString = new String(charArray);
@@ -33,6 +36,7 @@ class Solution {
             col.remove(i);
             diag1.remove(row + i);
             diag2.remove(row - i);
+        }
         }
     }
 }
