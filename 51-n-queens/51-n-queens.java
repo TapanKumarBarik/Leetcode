@@ -1,8 +1,8 @@
 class Solution {
    
-   private Set<Integer> col = new HashSet<Integer>();
-    private Set<Integer> diag1 = new HashSet<Integer>();
-    private Set<Integer> diag2 = new HashSet<Integer>();
+    private Set<Integer> col = new HashSet();
+    private Set<Integer> diag1 = new HashSet();
+    private Set<Integer> diag2 = new HashSet();
     
     public List<List<String>> solveNQueens(int n) {
         List<List<String>> res = new ArrayList<List<String>>();
@@ -20,7 +20,7 @@ class Solution {
             }
             
         else{
-                char[] charArray = new char[n];
+              char[] charArray = new char[n];
             Arrays.fill(charArray, '.');
             charArray[i] = 'Q';
             String rowString = new String(charArray);
