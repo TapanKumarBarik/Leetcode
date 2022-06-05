@@ -1,42 +1,53 @@
 class Solution {
-   
-    private Set<Integer> col = new HashSet();
-    private Set<Integer> diag1 = new HashSet();
-    private Set<Integer> diag2 = new HashSet();
-    
+    HashSet<Integer>col=new HashSet();
+        HashSet<Integer>di1=new HashSet();
+        HashSet<Integer>di2=new HashSet();
     public List<List<String>> solveNQueens(int n) {
-        List<List<String>> res = new ArrayList<List<String>>();
-        dfs(res,new ArrayList<String>(), 0, n);
-        return res;
+        
+        List<List<String>>list=new ArrayList();
+        
+        solve(list, new ArrayList(), n, 0);
+        
+        return list;
     }
-    private void dfs(List<List<String>> res, List<String> list, int row, int n){
-        if (row == n){
-            res.add(new ArrayList<String>(list));
+    private void solve(List<List<String>>list, ArrayList<String>temp, int n , int row){
+        
+        if(row==n){
+            list.add(new ArrayList(temp));
             return;
         }
-        for (int i = 0; i < n; i++){
-            if (col.contains(i) || diag1.contains(row + i) || diag2.contains(row - i)) {
-                continue;
-            }
-            
+        
         else{
-              char[] charArray = new char[n];
-            Arrays.fill(charArray, '.');
-            charArray[i] = 'Q';
-            String rowString = new String(charArray);
             
-            list.add(rowString);
-            col.add(i);
-            diag1.add(row + i);
-            diag2.add(row - i);
-            
-            dfs(res, list, row + 1, n);
-            
-            list.remove(list.size() - 1);
-            col.remove(i);
-            diag1.remove(row + i);
-            diag2.remove(row - i);
-        }
+            for(int i=0;i<n;i++){
+                
+                if(col.contains(i) || di1.contains(row+i) || di2.contains(row-i)){
+                    continue;
+                }
+                else{
+                    
+                    char[]arr=new char[n];
+                    
+                    Arrays.fill(arr,'.');
+                    arr[i]='Q';
+                    String s=new String(arr);
+                    
+                    temp.add(s);
+                    col.add(i);
+                    di1.add(row+i);
+                    di2.add(row-i);
+                    solve(list,temp, n,row+1);
+                    
+                    
+                    temp.remove(temp.size()-1);
+                    col.remove(i);
+                    di1.remove(row+i);
+                    di2.remove(row-i);
+                    
+                    
+                }
+            }
+                
         }
     }
 }
