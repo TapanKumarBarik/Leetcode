@@ -1,39 +1,29 @@
 class Solution {
-   private final Set<Integer> occupiedCols = new HashSet<Integer>();
-private final Set<Integer> occupiedDiag1s = new HashSet<Integer>();
-private final Set<Integer> occupiedDiag2s = new HashSet<Integer>();
+   Set<Integer> col = new HashSet();
+ Set<Integer> di1 = new HashSet();
+ Set<Integer> di2 = new HashSet();
 public int totalNQueens(int n) {
     return totalNQueensHelper(0, 0, n);
 }
 
 private int totalNQueensHelper(int row, int count, int n) {
-    for (int col = 0; col < n; col++) {
-        if (occupiedCols.contains(col)){
+    
+    for (int i = 0; i < n; i++) {
+        if (col.contains(i) ||di1.contains(row + i) || di2.contains(row-i)){
               continue;
-        }
-          
-        int diag1 = row - col;
-        if (occupiedDiag1s.contains(diag1)){
-             continue;
-        }
-           
-        int diag2 = row + col;
-        if (occupiedDiag2s.contains(diag2)){
-             continue;
-        }
-           
+        }      
         // we can now place a queen here
-        if (row == n-1)
-            count++;
+        if (row == n-1)  count++;
+          
         else {
-            occupiedCols.add(col);
-            occupiedDiag1s.add(diag1);
-            occupiedDiag2s.add(diag2);
+            col.add(i);
+            di1.add(row+i);
+            di2.add(row-i);
             count = totalNQueensHelper(row+1, count, n);
             // recover
-            occupiedCols.remove(col);
-            occupiedDiag1s.remove(diag1);
-            occupiedDiag2s.remove(diag2);
+            col.remove(i);
+            di1.remove(row+i);
+            di2.remove(row-i);
         }
     }
     
