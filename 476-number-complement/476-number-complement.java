@@ -2,16 +2,11 @@ class Solution {
     public int findComplement(int n) {
          if(n==0) return 1;
         
-        int result = 0;
-        int i = 0;        
-        while(n>0){
-            if((n&1) == 0){
-                result += 1<<i;
-            }
-            i++;
-            n >>= 1;
+        int res = 0;
+        while(res<n){
+            res=(res<<1)|1;
         }
         
-        return result;
+        return ~n & res;
     }
 }
