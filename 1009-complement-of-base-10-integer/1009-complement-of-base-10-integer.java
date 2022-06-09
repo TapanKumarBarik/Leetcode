@@ -10,3 +10,20 @@ class Solution {
         return ~n & num;
     }
 }
+
+/*
+lets take the number is 5 i le 
+
+1 0 1
+
+after the loop num will be 
+
+ 1 1 1
+ 
+ then ~n
+ 1 1 1 & 1 0 1
+ 
+ 
+ return is 10 i e 2
+
+*/
