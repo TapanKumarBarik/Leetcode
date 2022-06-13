@@ -14,3 +14,9 @@ class Solution {
     return res;
     }
 }
+
+//Extra array 
+
+//go from left 
+
+//come from right 
