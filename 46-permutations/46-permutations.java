@@ -19,10 +19,9 @@ class Solution {
         for(int i=0;i<nums.length;i++){
             
             if(temp.contains(nums[i]))continue;
-            
             temp.add(nums[i]);
             solve(list, temp, nums);
-            temp.remove(temp.get(temp.size()-1));
+            temp.remove(temp.size()-1);
             
         }
     }
