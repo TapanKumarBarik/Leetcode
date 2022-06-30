@@ -6,9 +6,11 @@ class Solution {
         //left array
         
         int []left=new int[n];
-       left[0]=nums[0];
-        for(int i=1;i<n;i++){
-            left[i]=nums[i]*left[i-1];
+        
+        int sum=1;
+        for(int i=0;i<n;i++){
+             sum*=nums[i];
+            left[i]=sum;
             
         }
         
@@ -16,11 +18,12 @@ class Solution {
         
         int []right=new int[n];
         
-       right[n-1]=nums[n-1];
+         sum=1;
         
-        for(int i=n-2;i>=0;i--){
+        for(int i=n-1;i>=0;i--){
+             sum*=nums[i];
+            right[i]=sum;
             
-            right[i]=nums[i]*right[i+1];
         }
         
         int []arr=new int[n];
