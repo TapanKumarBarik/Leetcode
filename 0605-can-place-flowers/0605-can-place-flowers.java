@@ -1,16 +1,11 @@
 class Solution {
-    public boolean canPlaceFlowers(int[] flowerbed, int n) {
-     int count = 1;
-    int result = 0;
-    for(int i=0; i<flowerbed.length; i++) {
-        if(flowerbed[i] == 0) {
-            count++;
-        }else {
-            result += (count-1)/2;
-            count = 0;
-        }
+    public boolean canPlaceFlowers(int[] f, int n) {
+     for(int i=0;i<f.length && n>0;i++){
+        if(f[i]==0 &&(i==0 || f[i-1]==0) &&(i==f.length-1 || f[i+1]==0) ){
+            n--;
+            i++;
+        } 
     }
-    if(count != 0) result += count/2;
-    return result>=n;
+    return n==0?true:false;
     }
 }
